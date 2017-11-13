@@ -25,6 +25,9 @@ namespace DB_View
         public MainPage()
         {
             this.InitializeComponent();
+            name.Text = "Component Name";
+            price.Text = "$Price";
+            description.Text = "This is a description. It should stay pretty concise; extended info belongs in the notes section.";
         }
     }
 }
