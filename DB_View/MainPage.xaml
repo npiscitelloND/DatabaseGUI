@@ -8,30 +8,23 @@
     mc:Ignorable="d" Margin="5">
 
     <StackPanel Name="background" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Border Name="header_border" BorderBrush="Black" BorderThickness="1" Margin="0">
-            <RelativePanel Name="header">
-                <TextBlock Name="name" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="5,5,5,0" FontWeight="Bold"/>
-                <TextBlock Name="price" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource TitleTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.RightOf="" TextAlignment="Right" Margin="5,5,5,0"/>
-                <TextBlock Name="description" HorizontalAlignment="Left" VerticalAlignment="Top" RelativePanel.Below="name" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="5" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}"/>
-            </RelativePanel>
-        </Border>
 
-        <Border Name="images_border" BorderBrush="Black" BorderThickness="1" Margin="0">
-            <RelativePanel Name="images">
-                
-            </RelativePanel>
-        </Border>
-        
-        <Border Name="details_border" BorderBrush="Black" BorderThickness="1" Margin="0">
-            <RelativePanel Name="details">
-                
-            </RelativePanel>
-        </Border>
-        
-        <Border Name="procurement_border" BorderBrush="Black" BorderThickness="1" Margin="0">
-            <RelativePanel Name="procurement">
-                
-            </RelativePanel>
-        </Border>
+        <RelativePanel Name="header">
+            <TextBlock Name="name" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource TitleTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="5,5,5,0" FontWeight="Bold" IsTextSelectionEnabled="True"/>
+            <TextBlock Name="price" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource TitleTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.RightOf="name" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
+            <TextBlock Name="description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource BodyTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="name" Margin="5" IsTextSelectionEnabled="True"/>
+        </RelativePanel>
+
+        <RelativePanel Name="images">
+
+         </RelativePanel>
+
+        <RelativePanel Name="details">
+
+        </RelativePanel>
+
+        <RelativePanel Name="procurement">
+
+         </RelativePanel>
     </StackPanel>
 </Page>
