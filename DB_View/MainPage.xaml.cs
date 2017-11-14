@@ -32,6 +32,16 @@ namespace DB_View
             BitmapImage placeholder = new BitmapImage(new Uri(this.BaseUri, "/Assets/Square150x150Logo.png"));
             symbol.Source = placeholder;
             footprint.Source = placeholder;
+
+            notes.Text = "This is a longer description of this component. Or it doesn't have to be - this is the 'uncatagorized' space.";
+            applications.Text = "This is a list of products this component has been used in.";
+
+            manufacturer.Text = "Aperture Science";
+            manufacturer_part_number.Text = "BLACKMESASUX";
+
+            supplier.Text = "Acme Corp.";
+            supplier_part_number.Text = "BEEPBEEP";
+            price.Text = "like, a billion";
         }
     }
 }
