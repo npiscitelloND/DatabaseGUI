@@ -10,14 +10,25 @@
     <StackPanel Name="background" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <RelativePanel Name="header">
-            <TextBlock Name="name" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource TitleTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="5,5,5,0" FontWeight="Bold" IsTextSelectionEnabled="True"/>
-            <TextBlock Name="price" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource TitleTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.RightOf="name" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
-            <TextBlock Name="description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource BodyTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="name" Margin="5" IsTextSelectionEnabled="True"/>
+            <TextBlock Name="name" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,0" IsTextSelectionEnabled="True" TextTrimming="CharacterEllipsis"/>
+            <TextBlock Name="description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource BodyTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="name" Margin="5" IsTextSelectionEnabled="True"/>
         </RelativePanel>
 
-        <RelativePanel Name="images">
-
-         </RelativePanel>
+        <Grid Name="images">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!-- do we even need the "symbol" and "footprint" labels? It'll be pretty obvious...-->
+            <StackPanel Name="symbol_container" Grid.Column="0" Margin="10,5,0,0">
+                <TextBlock Name="symbol_label" Text="Symbol" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" />
+                <Image Name="symbol" MaxHeight="200" />
+            </StackPanel>
+            <StackPanel Name="footprint_container" Grid.Column="1" Margin="10,5,0,0">
+                <TextBlock Name="footprint_label" Text="Footprint" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" />
+                <Image Name="footprint" MaxHeight="200" />
+            </StackPanel>
+        </Grid>
 
         <RelativePanel Name="details">
 
@@ -25,6 +36,6 @@
 
         <RelativePanel Name="procurement">
 
-         </RelativePanel>
+        </RelativePanel>
     </StackPanel>
 </Page>
