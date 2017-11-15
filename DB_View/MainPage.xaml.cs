@@ -23,9 +23,11 @@ namespace DB_View
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
+
             name.Text = "Component Name";
             description.Text = "This is a description. It should stay pretty concise; extended info belongs in the notes section.";
 
@@ -42,6 +44,26 @@ namespace DB_View
             supplier.Text = "Acme Corp.";
             supplier_part_number.Text = "BEEPBEEP";
             price.Text = "like, a billion";
+        }
+
+        private async void OnClickBrowse( object sender, RoutedEventArgs e )
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
+            picker.FileTypeFilter.Add("*");
+            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            
+            if( file != null)
+            {
+                db_filename.Text = file.Name;
+            }
+            
+        }
+
+        void OnClickSearch(object sender, RoutedEventArgs e)
+        {
+            // open a search window
         }
     }
 }

@@ -7,62 +7,69 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Margin="5">
 
-    <ScrollViewer>
-        <StackPanel Name="background" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <RelativePanel Name="background">
+        <RelativePanel Name="status" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+            <Button Name="db_search" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Content="Search DB" Margin="0,0,10,0" Click="OnClickSearch"/>
+            <TextBox Name="db_filename" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.RightOf="db_search" RelativePanel.LeftOf="db_browse" PlaceholderText="C:\path\to\database\file"/>
+            <Button Name="db_browse" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" Content="Browse..." Margin="10,0,0,0" Click="OnClickBrowse"/>
+        </RelativePanel>
+        
+        <ScrollViewer RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="status" Margin="0,5,0,0">
+            <StackPanel Name="content" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <RelativePanel Name="header">
+                    <TextBlock Name="name" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,0" IsTextSelectionEnabled="True" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Name="description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource BodyTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="name" Margin="5" IsTextSelectionEnabled="True"/>
+                </RelativePanel>
 
-            <RelativePanel Name="header">
-                <TextBlock Name="name" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,0" IsTextSelectionEnabled="True" TextTrimming="CharacterEllipsis"/>
-                <TextBlock Name="description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Style="{ThemeResource BodyTextBlockStyle}" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="name" Margin="5" IsTextSelectionEnabled="True"/>
-            </RelativePanel>
+                <Grid Name="images" Margin="0,25,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Name="symbol" MaxHeight="200" Grid.Column="0"/>
+                    <Image Name="footprint" MaxHeight="200" Grid.Column="1"/>
+                </Grid>
 
-            <Grid Name="images" Margin="0,25,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Image Name="symbol" MaxHeight="200" Grid.Column="0"/>
-                <Image Name="footprint" MaxHeight="200" Grid.Column="1"/>
-            </Grid>
+                <StackPanel Name="details" Margin="0,25,0,0">
+                    <TextBlock Text="Notes" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" />
+                    <TextBlock Name="notes" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
+                    <TextBlock Text="Applications" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
+                    <TextBlock Name="applications" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
+                    <TextBlock Text="Documents" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
+                    <TextBlock Name="documents" Text="placeholder for documents list" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0"/>
+                </StackPanel>
 
-            <StackPanel Name="details" Margin="0,25,0,0">
-                <TextBlock Text="Notes" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" />
-                <TextBlock Name="notes" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
-                <TextBlock Text="Applications" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
-                <TextBlock Name="applications" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
-                <TextBlock Text="Documents" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
-                <TextBlock Name="documents" Text="placeholder for documents list" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0"/>
+                <Grid Name="procurement" Margin="0,25,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Manufacturer" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" Grid.Column="0" Grid.Row="0"/>
+                    <TextBlock Name="manufacturer" Style="{ThemeResource BodyTextBlockStyle}" Grid.Column="0" Grid.Row="1" IsTextSelectionEnabled="True" Margin="0,5,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,0,0">
+                        <TextBlock Text="PN:" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,0,5,0"/>
+                        <TextBlock Name="manufacturer_part_number" Style="{ThemeResource BodyTextBlockStyle}" IsTextSelectionEnabled="True"/>
+                    </StackPanel>
+
+                    <TextBlock Text="Supplier" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" Grid.Column="1" Grid.Row="0"/>
+                    <TextBlock Name="supplier" Style="{ThemeResource BodyTextBlockStyle}" Grid.Column="1" Grid.Row="1" IsTextSelectionEnabled="True" Margin="0,5,0,0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,0,0">
+                        <TextBlock Text="PN:" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,0,5,0"/>
+                        <TextBlock Name="supplier_part_number" Style="{ThemeResource BodyTextBlockStyle}" IsTextSelectionEnabled="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,0,0">
+                        <TextBlock Text="Price:" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,0,5,0"/>
+                        <TextBlock Name="price" Style="{ThemeResource BodyTextBlockStyle}" IsTextSelectionEnabled="True"/>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
-
-            <Grid Name="procurement" Margin="0,25,0,25">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Manufacturer" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" Grid.Column="0" Grid.Row="0"/>
-                <TextBlock Name="manufacturer" Style="{ThemeResource BodyTextBlockStyle}" Grid.Column="0" Grid.Row="1" IsTextSelectionEnabled="True" Margin="0,5,0,0"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,5,0,0">
-                    <TextBlock Text="PN:" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,0,5,0"/>
-                    <TextBlock Name="manufacturer_part_number" Style="{ThemeResource BodyTextBlockStyle}" IsTextSelectionEnabled="True"/>
-                </StackPanel>
-
-                <TextBlock Text="Supplier" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,0,0,0" Grid.Column="1" Grid.Row="0"/>
-                <TextBlock Name="supplier" Style="{ThemeResource BodyTextBlockStyle}" Grid.Column="1" Grid.Row="1" IsTextSelectionEnabled="True" Margin="0,5,0,0"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0,5,0,0">
-                    <TextBlock Text="PN:" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,0,5,0"/>
-                    <TextBlock Name="supplier_part_number" Style="{ThemeResource BodyTextBlockStyle}" IsTextSelectionEnabled="True"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="0,5,0,0">
-                    <TextBlock Text="Price:" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,0,5,0"/>
-                    <TextBlock Name="price" Style="{ThemeResource BodyTextBlockStyle}" IsTextSelectionEnabled="True"/>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </RelativePanel>
 </Page>
