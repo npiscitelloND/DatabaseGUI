@@ -51,12 +51,11 @@ namespace DB_View
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
-            picker.FileTypeFilter.Add("*");
+            picker.FileTypeFilter.Add(".accdb");
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-            
             if( file != null)
             {
-                db_filename.Text = file.Name;
+                db_filename.Text = file.Path;
             }
             
         }

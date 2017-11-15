@@ -35,8 +35,8 @@
                     <TextBlock Name="notes" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
                     <TextBlock Text="Applications" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
                     <TextBlock Name="applications" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0" IsTextSelectionEnabled="True"/>
-                    <TextBlock Text="Documents" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
-                    <TextBlock Name="documents" Text="placeholder for documents list" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0"/>
+                    <TextBlock Text="Datasheet" Style="{ThemeResource TitleTextBlockStyle}" Margin="15,15,0,0" />
+                    <TextBlock Name="datasheet" Text="placeholder for datasheet" Style="{ThemeResource BodyTextBlockStyle}" Margin="5,5,5,0"/>
                 </StackPanel>
 
                 <Grid Name="procurement" Margin="0,25,0,25">
