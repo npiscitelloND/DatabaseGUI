@@ -14,20 +14,22 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace DB_View
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// The primary viewer interface
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        Database _database = new Database();
 
         public MainPage()
         {
             this.InitializeComponent();
 
+            /* These fields are all going to be filled in by the database
             name.Text = "Component Name";
             description.Text = "This is a description. It should stay pretty concise; extended info belongs in the notes section.";
 
@@ -44,20 +46,25 @@ namespace DB_View
             supplier.Text = "Acme Corp.";
             supplier_part_number.Text = "BEEPBEEP";
             price.Text = "like, a billion";
+            */
         }
 
         private async void OnClickBrowse( object sender, RoutedEventArgs e )
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
-            picker.FileTypeFilter.Add(".accdb");
-            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-            if( file != null)
+            var picker = new Windows.Storage.Pickers.FileOpenPicker
             {
-                db_filename.Text = file.Path;
-            }
-            
+                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
+                ViewMode = Windows.Storage.Pickers.PickerViewMode.List
+            };
+            picker.FileTypeFilter.Add(".accdb");
+            _database.LoadFile(await picker.PickSingleFileAsync());
+            db_filename.Text = _database.GetPath();
+
+            name.Text = _database.GetName();
+            description.Text = _database.GetDescription();
+            notes.Text = _database.GetNotes();
+            manufacturer.Text = _database.GetManufacturer();
+            supplier.Text = _database.GetSupplier();
         }
 
         void OnClickSearch(object sender, RoutedEventArgs e)
