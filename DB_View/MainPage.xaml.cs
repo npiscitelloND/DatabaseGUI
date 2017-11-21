@@ -49,27 +49,28 @@ namespace DB_View
             */
         }
 
-        private async void OnClickBrowse( object sender, RoutedEventArgs e )
+        private void OnClickBrowse( object sender, RoutedEventArgs e )
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker
-            {
-                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
-                ViewMode = Windows.Storage.Pickers.PickerViewMode.List
-            };
-            picker.FileTypeFilter.Add(".accdb");
-            _database.LoadFile(await picker.PickSingleFileAsync());
-            db_filename.Text = _database.GetPath();
+            _database.LoadFile(FileRead);
+        }
 
-            name.Text = _database.GetName();
-            description.Text = _database.GetDescription();
-            notes.Text = _database.GetNotes();
-            manufacturer.Text = _database.GetManufacturer();
-            supplier.Text = _database.GetSupplier();
+        private void FileRead()
+        {
+            db_filename.Text = _database.GetPath();
         }
 
         void OnClickSearch(object sender, RoutedEventArgs e)
         {
             // open a search window
+        }
+
+        private void DbRead()
+        {
+            name.Text = _database.GetName();
+            description.Text = _database.GetDescription();
+            notes.Text = _database.GetNotes();
+            manufacturer.Text = _database.GetManufacturer();
+            supplier.Text = _database.GetSupplier();
         }
     }
 }

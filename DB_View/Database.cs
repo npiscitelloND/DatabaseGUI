@@ -19,9 +19,17 @@ namespace DB_View
         private string _manufacturer = "";
         private string _supplier = "";
 
-        public void LoadFile(Windows.Storage.StorageFile file)
+        public async void LoadFile(Action cb)
         {
-            _db_file = file;
+            var picker = new Windows.Storage.Pickers.FileOpenPicker
+            {
+                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
+                ViewMode = Windows.Storage.Pickers.PickerViewMode.List
+            };
+            picker.FileTypeFilter.Add(".sqlite");
+            picker.FileTypeFilter.Add("*");
+            _db_file = await picker.PickSingleFileAsync();
+            if( _db_file != null ) { cb(); }
         }
 
         public void LoadEntry()
@@ -43,7 +51,7 @@ namespace DB_View
 
         public string GetName()
         {
-            return _notes;
+            return _name;
         }
 
         public string GetDescription()
